@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Calendar, MapPin, ExternalLink, Instagram, Twitter, Mail, Music, User, Image as ImageIcon } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { 
+  Calendar, MapPin, ExternalLink, Instagram, Mail, 
+  Music, User, Image as ImageIcon, 
+  Play, Pause, SkipForward, SkipBack // Import Play/Pause icons
+} from 'lucide-react';
 import bgMusic from './assets/bg-music.png';
 import bgBio from './assets/bg-photos.jpg';
 import bgPhotos from './assets/bg-bio.jpg';
 import logo from './assets/logo.jpg';
+import mySong from './assets/watchOutM2.wav'
 
 const EPK = () => {
   const [activeTab, setActiveTab] = useState('music');
@@ -14,17 +19,44 @@ const EPK = () => {
     bio: bgBio,
     photos: bgPhotos
   };
+  // Custom SoundCloud Icon Component
+const SoundCloudIcon = ({ size = 24, className }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="currentColor" /* This ensures it uses your CSS link color */
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M11.56 8.87V17h-1.38v-8.13h1.38zm-2.77 1.45v6.68H7.42v-6.68h1.37zm-2.76 1.83v4.85H4.65v-4.85h1.38zm13.6 2.6c0-2.3-1.87-4.17-4.17-4.17-.37 0-.72.06-1.06.15V8.58c0-.6-.48-1.08-1.08-1.08-.18 0-.34.05-.5.12V5.13c0-.6-.48-1.1-1.1-1.1-.14 0-.28.03-.4.08V2.5c0-.6-.46-1.1-1.07-1.1-.6 0-1.1.5-1.1 1.1v14.48h13.5c2.3 0 4.16-1.87 4.16-4.17 0-2.26-1.83-4.13-4.08-4.17z" />
+  </svg>
+);
 
   const shows = [
-    { date: 'OCT 12', venue: 'The Echo', city: 'Los Angeles, CA', link: '#' },
-    { date: 'OCT 15', venue: 'Brick & Mortar', city: 'San Francisco, CA', link: '#' },
-    { date: 'NOV 02', venue: 'Baby\'s All Right', city: 'Brooklyn, NY', link: '#' },
+    { date: 'TBA', venue: 'TTBA', city: 'Los TBA, CA', link: '#' },
+    { date: 'TBA', venue: 'TBA', city: 'San TBA, CA', link: '#' },
+    { date: 'TBA', venue: 'TBA', city: 'TBA, NY', link: '#' },
   ];
 
   // Auto-import gallery photos. 
   // If this crashes, ensure the folder 'src/assets/gallery' exists.
   const imagesGlob = import.meta.glob('./assets/gallery/*.{png,jpg,jpeg}', { eager: true });
   const galleryPhotos = Object.values(imagesGlob).map(img => img.default);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null); // Reference to the hidden audio tag
+
+  // Replace this URL with your actual MP3 file path (e.g., import song from './assets/song.mp3')
+  const songUrl = "./assets/watchOutM2.wav"; 
+
+  const togglePlay = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   return (
     <div 
@@ -37,7 +69,8 @@ const EPK = () => {
         backgroundAttachment: 'fixed',
         transition: 'background-image 0.5s ease-in-out',
         minHeight: '100vh',
-        width: '100%'
+        width: '100%',
+        paddingBottom: '120px' 
       }}
     >
       <div className="content-container">
@@ -49,7 +82,8 @@ const EPK = () => {
             <p className="tagline">NEW TRACK "Watch OUT" OUT NOW</p>
             <div className="social-links">
               <a href="#" className="icon-link"><Instagram size={24} /></a>
-              <a href="#" className="icon-link"><Twitter size={24} /></a>
+              <a href="https://soundcloud.com/user-981388662" className="icon-link" target="_blank" rel="noreferrer">
+                      <SoundCloudIcon size={24} /></a>              
               <a href="#" className="icon-link"><Mail size={24} /></a>
             </div>
           </div>
@@ -137,6 +171,26 @@ const EPK = () => {
               </section>
             </div>
           )}
+
+        <div className="sticky-player">
+        {/* Hidden Audio Element */}
+        <audio ref={audioRef} src={mySong} onEnded={() => setIsPlaying(false)} />
+        
+        <div className="player-track-info">
+          <span className="player-title">Watch OUT</span>
+          <span className="player-artist">Red.Hat.</span>
+        </div>
+
+        <div className="player-controls">
+          <button className="control-btn secondary"><SkipBack size={20} /></button>
+          
+          <button className="control-btn primary" onClick={togglePlay}>
+            {isPlaying ? <Pause size={24} fill="black" /> : <Play size={24} fill="black" className="play-icon-offset" />}
+          </button>
+          
+          <button className="control-btn secondary"><SkipForward size={20} /></button>
+        </div>
+      </div>
 
           {/* 3. PHOTOS TAB */}
           {activeTab === 'photos' && (
