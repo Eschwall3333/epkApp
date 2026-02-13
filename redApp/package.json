@@ -11,8 +11,8 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  
-  "homepage": "https://YourUsername.github.io/my-artist-epk",
+
+  "homepage": "https://eschwall3333.github.io/epkApp/",
 
   
   "dependencies": {

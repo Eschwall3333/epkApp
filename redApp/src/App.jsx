@@ -46,7 +46,7 @@ const EPK = () => {
         <header className="hero">
           <div className="hero-content">
             <img src={logo} alt="Artist Logo" className="artist-logo" />
-            <p className="tagline">NEW ALBUM "NEON DREAMS" OUT NOW</p>
+            <p className="tagline">NEW TRACK "Watch OUT" OUT NOW</p>
             <div className="social-links">
               <a href="#" className="icon-link"><Instagram size={24} /></a>
               <a href="#" className="icon-link"><Twitter size={24} /></a>
@@ -84,11 +84,11 @@ const EPK = () => {
           {activeTab === 'music' && (
             <div className="tab-content fade-in">
               <section className="section-container">
-                <h2 className="section-title">LATEST RELEASE</h2>
+                <h2 className="section-title">"insert some mix name here"</h2>
                 <div className="media-wrapper">
                   <iframe 
                     className="responsive-iframe"
-                    src="https://www.youtube.com/embed/LXb3EKWsInQ" 
+                    src="https://www.youtube.com/embed/rUYlemYiZcg?si=5KwQw3iofwo7kcK_" 
                     title="YouTube player" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowFullScreen
@@ -125,8 +125,14 @@ const EPK = () => {
               <section className="bio-container">
                 <h2 className="section-title">THE STORY</h2>
                 <div className="bio-text">
-                  <p>From the underground scenes of East London to the main stages of LA...</p>
-                  <p>"Neon Dreams" captures raw emotion with pristine production.</p>
+                  <p>Hailing from the heart of Atlanta, Red.Hat. is a veteran of the electronic underground with over 14 years of 
+                      dedicated craft behind the decks and in the studio. 
+                        While Atlanta is often defined by its hip-hop roots, Red.Hat has carved out a distinct sonic lane, 
+                        importing and evolving the high-energy sounds of 
+                          the UK rave scene for a domestic audience.
+                            </p>
+                  <p>Red.Hat. represents the bridge between Atlanta’s deep bass culture and 
+                    the foundational breakbeats of London’s underground.</p>
                 </div>
               </section>
             </div>
@@ -158,7 +164,7 @@ const EPK = () => {
         </main>
         
         <footer className="footer">
-          <p>&copy; 2024 Artist Name Management</p>
+          <p>&copy; 2020 I Need A Manager....MGMT....INC....LLC</p>
         </footer>
       </div>
     </div>
