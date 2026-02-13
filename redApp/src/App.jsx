@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, MapPin, ExternalLink, Instagram, Twitter, Mail, Music, User, Image as ImageIcon } from 'lucide-react';
 import bgMusic from './assets/bg-music.png';
-import bgBio from './assets/bg-bio.jpg';
-import bgPhotos from './assets/bg-photos.jpg';
+import bgBio from './assets/bg-photos.jpg';
+import bgPhotos from './assets/bg-bio.jpg';
 import logo from './assets/logo.jpg';
 
 const EPK = () => {
