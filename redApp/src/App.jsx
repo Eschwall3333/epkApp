@@ -1,13 +1,14 @@
 import React, { useState, useRef } from 'react';
 import { 
   Calendar, MapPin, ExternalLink, Instagram, Mail, 
-  Music, User, Image as ImageIcon, 
-  Play, Pause, SkipForward, SkipBack // Import Play/Pause icons
+  Music, User, Image as ImageIcon, Video, // Import Video icon
+  Play, Pause, SkipForward, SkipBack 
 } from 'lucide-react';
 import bgMusic from './assets/bg-music.png';
 import bgBio from './assets/bg-photos.jpg';
 import bgPhotos from './assets/bg-bio.jpg';
-import logo from './assets/logo.jpg';
+import bgVideos from './assets/bg-videos.jpg';
+import logo from './assets/logo-vect.png';
 import mySong from './assets/watchOutM2.wav'
 
 const EPK = () => {
@@ -17,8 +18,10 @@ const EPK = () => {
   const backgrounds = {
     music: bgMusic,
     bio: bgBio,
-    photos: bgPhotos
+    photos: bgPhotos,
+    videos: bgVideos
   };
+  
   // Custom SoundCloud Icon Component
 const SoundCloudIcon = ({ size = 24, className }) => (
   <svg 
@@ -32,9 +35,17 @@ const SoundCloudIcon = ({ size = 24, className }) => (
     <path d="M11.56 8.87V17h-1.38v-8.13h1.38zm-2.77 1.45v6.68H7.42v-6.68h1.37zm-2.76 1.83v4.85H4.65v-4.85h1.38zm13.6 2.6c0-2.3-1.87-4.17-4.17-4.17-.37 0-.72.06-1.06.15V8.58c0-.6-.48-1.08-1.08-1.08-.18 0-.34.05-.5.12V5.13c0-.6-.48-1.1-1.1-1.1-.14 0-.28.03-.4.08V2.5c0-.6-.46-1.1-1.07-1.1-.6 0-1.1.5-1.1 1.1v14.48h13.5c2.3 0 4.16-1.87 4.16-4.17 0-2.26-1.83-4.13-4.08-4.17z" />
   </svg>
 );
+const videoList = [
+  { id: 'rUYlemYiZcg', title: 'My Private Property Season 4 Live Set' },
+  { id: 'eF9kkWASCVQ', title: 'I wear a Red.Hat. and answer questions' },
+  //{ id: 'jNQXAC9IVRw', title: 'Behind The Scenes: Studio Tour' },
+  //{ id: 'dQw4w9WgXcQ', title: 'Acoustic Session' },
+];
 
+// State to track the currently playing video (Defaults to the first one)
+const [currentVideo, setCurrentVideo] = useState(videoList[0]);
   const shows = [
-    { date: 'TBA', venue: 'TTBA', city: 'Los TBA, CA', link: '#' },
+    { date: 'TBA', venue: 'TBA', city: 'Los TBA, CA', link: '#' },
     { date: 'TBA', venue: 'TBA', city: 'San TBA, CA', link: '#' },
     { date: 'TBA', venue: 'TBA', city: 'TBA, NY', link: '#' },
   ];
@@ -82,7 +93,7 @@ const SoundCloudIcon = ({ size = 24, className }) => (
             <p className="tagline">NEW TRACK "Watch OUT" OUT NOW</p>
             <div className="social-links">
               <a href="#" className="icon-link"><Instagram size={24} /></a>
-              <a href="https://soundcloud.com/user-981388662" className="icon-link" target="_blank" rel="noreferrer">
+              <a href="https://on.soundcloud.com/ZDC9Qz96I8mYCXDPa6" className="icon-link" target="_blank" rel="noreferrer">
                       <SoundCloudIcon size={24} /></a>              
               <a href="#" className="icon-link"><Mail size={24} /></a>
             </div>
@@ -109,6 +120,9 @@ const SoundCloudIcon = ({ size = 24, className }) => (
           >
             <ImageIcon size={18} /> PHOTOS
           </button>
+          <button 
+            className={`tab-btn ${activeTab === 'videos' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('videos')}><Video size={18} /> VIDEOS</button>
         </nav>
 
         {/* --- MAIN CONTENT --- */}
@@ -214,6 +228,52 @@ const SoundCloudIcon = ({ size = 24, className }) => (
               </section>
             </div>
           )}
+          {/* --- NEW: VIDEOS TAB --- */}
+          {activeTab === 'videos' && (
+             <div className="tab-content fade-in">
+               <section className="section-container">
+                 <h2 className="section-title">WATCH</h2>
+                 
+                 {/* Main Player */}
+                 <div className="media-wrapper">
+                   <iframe 
+                     className="responsive-iframe" 
+                     src={`https://www.youtube.com/embed/${currentVideo.id}?autoplay=1`} 
+                     title="YouTube" 
+                     allow="autoplay; encrypted-media; picture-in-picture" 
+                     allowFullScreen
+                   ></iframe>
+                 </div>
+
+                 {/* Playlist Selector */}
+                 <div className="playlist-container">
+                   <h3 className="playlist-header">MORE VIDEOS</h3>
+                   <div className="playlist-list">
+                     {videoList.map((video) => (
+                       <button 
+                         key={video.id} 
+                         className={`playlist-item ${currentVideo.id === video.id ? 'active' : ''}`}
+                         onClick={() => setCurrentVideo(video)}
+                       >
+                         {/* Auto-generate thumbnail from YouTube ID */}
+                         <img 
+                           src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`} 
+                           alt={video.title} 
+                           className="playlist-thumb"
+                         />
+                         <div className="playlist-info">
+                           <span className="playlist-title">{video.title}</span>
+                           {currentVideo.id === video.id && <span className="now-playing">Now Playing</span>}
+                         </div>
+                         <Play size={16} className="playlist-icon" />
+                       </button>
+                     ))}
+                   </div>
+                 </div>
+
+               </section>
+             </div>
+           )}
 
         </main>
         
