@@ -89,18 +89,7 @@ const [currentVideo, setCurrentVideo] = useState(videoList[0]);
         {/* --- HEADER --- */}
         <header className="hero">
           <div className="hero-content">
-            <img src={logo} alt="Artist Logo" className="artist-logo" />
-            <p className="tagline">NEW TRACK "Watch OUT" OUT NOW</p>
-            <div className="social-links">
-              <a href="#" className="icon-link"><Instagram size={24} /></a>
-              <a href="https://on.soundcloud.com/ZDC9Qz96I8mYCXDPa6" className="icon-link" target="_blank" rel="noreferrer">
-                      <SoundCloudIcon size={24} /></a>              
-              <a href="#" className="icon-link"><Mail size={24} /></a>
-            </div>
-          </div>
-        </header>
-
-        {/* --- TABS --- */}
+            {/* --- TABS --- */}
         <nav className="nav-tabs">
           <button 
             className={`tab-btn ${activeTab === 'music' ? 'active' : ''}`} 
@@ -124,6 +113,18 @@ const [currentVideo, setCurrentVideo] = useState(videoList[0]);
             className={`tab-btn ${activeTab === 'videos' ? 'active' : ''}`} 
             onClick={() => setActiveTab('videos')}><Video size={18} /> VIDEOS</button>
         </nav>
+            <img src={logo} alt="Artist Logo" className="artist-logo" />
+            <p className="tagline">NEW TRACK "Watch OUT" OUT NOW</p>
+            <div className="social-links">
+              <a href="#" className="icon-link"><Instagram size={24} /></a>
+              <a href="https://on.soundcloud.com/ZDC9Qz96I8mYCXDPa6" className="icon-link" target="_blank" rel="noreferrer">
+                      <SoundCloudIcon size={24} /></a>              
+              <a href="#" className="icon-link"><Mail size={24} /></a>
+            </div>
+          </div>
+        </header>
+
+      
 
         {/* --- MAIN CONTENT --- */}
         <main className="main-content">
