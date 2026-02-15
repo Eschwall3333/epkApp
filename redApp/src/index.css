@@ -25,17 +25,17 @@ body {
 }
 
 /* -- HEADER -- */
-.hero { text-align: center; padding: 4rem 0 2rem 0; }
+.hero { text-align: center; padding: 2rem 0 0 0; }
 .hero-content { display: flex; flex-direction: column; align-items: center; }
-.artist-logo { max-width: 800px; width: 150%; height: auto; margin-bottom: 0.2rem; }
-.tagline { color: var(--text-muted); font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; }
-.social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; }
+.artist-logo { max-width: 600px; width: 150%; height: auto; margin-bottom: 0.2rem; }
+.tagline { color: var(--text-muted); font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin:0; }
+.social-links { display: flex; justify-content: center; gap: 0rem; margin-top: 1rem; }
 .icon-link { color: var(--text-main); transition: color 0.3s; }
 .icon-link:hover { color: var(--accent-color); }
 
 /* -- TABS -- */
 .nav-tabs {
-  display: flex; justify-content: center; gap: 8px; margin-bottom: 2rem;
+  display: flex; justify-content: center; gap: 8px; margin-bottom: 0rem;
   background: rgba(255,255,255,0.1); padding: 6px; border-radius: 50px;
   backdrop-filter: blur(10px);
 }
@@ -276,3 +276,265 @@ body {
     display: none; /* Hide play icon on mobile to save space */
   }
 }
+/* =========================================
+   MOBILE RESPONSIVENESS OVERRIDES
+   Add this to the very bottom of index.css
+   ========================================= */
+
+@media (max-width: 768px) {
+  
+  /* 1. Global Layout: Prevent horizontal scrolling */
+  body, .app-wrapper {
+    overflow-x: hidden;
+  }
+
+  .content-container {
+    width: 100%;
+    padding: 0 15px 140px 15px; /* Extra bottom padding for sticky player */
+  }
+
+  /* 2. Header & Logo: Scale down safely */
+  .hero {
+    padding-top: 1rem;
+  }
+
+  .artist-logo {
+    max-width: 90%; /* Prevents the 800px logo from breaking screens */
+    height: auto;
+  }
+
+  .tagline {
+    font-size: 0.7rem; /* Smaller text */
+    letter-spacing: 1px;
+    margin-top: 5px;
+  }
+
+  /* 3. Navigation Tabs: Scrollable instead of squished */
+  .nav-tabs {
+    flex-wrap: wrap; /* Allows tabs to stack if needed */
+    gap: 8px;
+    padding: 8px;
+    width: 95%; /* Fits within screen */
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .tab-btn {
+    font-size: 0.7rem;
+    padding: 8px 12px;
+    flex: 1 1 auto; /* Grow to fill space */
+    justify-content: center;
+  }
+
+  /* 4. Sections & Fonts */
+  .section-title {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  /* 5. Shows List: Stack vertically */
+  .show-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    padding: 1.2rem;
+  }
+
+  .date-box {
+    flex-direction: row; /* Date items side-by-side */
+    gap: 8px;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 8px;
+    width: 100%;
+  }
+
+  .venue-info {
+    padding: 0;
+    align-items: center;
+  }
+
+  .ticket-btn {
+    width: 100%; /* Full width button for easier tapping */
+    justify-content: center;
+    padding: 12px; /* Bigger tap target */
+  }
+
+  /* 6. Video Playlist: Make tappable */
+  .playlist-item {
+    padding: 12px; /* Easier to tap */
+  }
+
+  .playlist-thumb {
+    width: 80px; /* Larger thumbnail */
+    height: 60px;
+  }
+  
+  .playlist-title {
+    font-size: 0.9rem;
+  }
+
+  /* 7. Sticky Player: Simplify for Mobile */
+  .sticky-player {
+    width: 100%; /* Full width */
+    bottom: 0; /* Stick to very bottom */
+    border-radius: 0; /* Remove rounded corners */
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    padding: 15px 20px;
+    /* Account for iPhone Home Bar */
+    padding-bottom: max(15px, env(safe-area-inset-bottom)); 
+    background: rgba(10, 10, 10, 0.95); /* Less transparent for readability */
+  }
+
+  .player-track-info {
+    max-width: 50%; /* Prevent text from hitting buttons */
+  }
+  
+  .player-title {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Hide the "Skip" buttons on mobile to save space? 
+     Optional: Remove this if you want them. */
+  .control-btn.secondary {
+    display: none; 
+  }
+
+  .control-btn.primary {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+   @media (max-width: 768px) {
+  
+    /* 1. Global Layout: Prevent horizontal scrolling */
+    body, .app-wrapper {
+      overflow-x: hidden;
+    }
+  
+    .content-container {
+      width: 100%;
+      padding: 0 15px 140px 15px; /* Extra bottom padding for sticky player */
+    }
+  
+    /* 2. Header & Logo: Scale down safely */
+    .hero {
+      padding-top: 1rem;
+    }
+  
+    .artist-logo {
+      max-width: 90%; /* Prevents the 800px logo from breaking screens */
+      height: auto;
+    }
+  
+    .tagline {
+      font-size: 0.7rem; /* Smaller text */
+      letter-spacing: 1px;
+      margin-top: 5px;
+    }
+  
+    /* 3. Navigation Tabs: Scrollable instead of squished */
+    .nav-tabs {
+      flex-wrap: wrap; /* Allows tabs to stack if needed */
+      gap: 8px;
+      padding: 8px;
+      width: 95%; /* Fits within screen */
+      margin: 0 auto 1.5rem auto;
+    }
+  
+    .tab-btn {
+      font-size: 0.7rem;
+      padding: 8px 12px;
+      flex: 1 1 auto; /* Grow to fill space */
+      justify-content: center;
+    }
+  
+    /* 4. Sections & Fonts */
+    .section-title {
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  
+    /* 5. Shows List: Stack vertically */
+    .show-card {
+      flex-direction: column;
+      text-align: center;
+      gap: 12px;
+      padding: 1.2rem;
+    }
+  
+    .date-box {
+      flex-direction: row; /* Date items side-by-side */
+      gap: 8px;
+      justify-content: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 8px;
+      width: 100%;
+    }
+  
+    .venue-info {
+      padding: 0;
+      align-items: center;
+    }
+  
+    .ticket-btn {
+      width: 100%; /* Full width button for easier tapping */
+      justify-content: center;
+      padding: 12px; /* Bigger tap target */
+    }
+  
+    /* 6. Video Playlist: Make tappable */
+    .playlist-item {
+      padding: 12px; /* Easier to tap */
+    }
+  
+    .playlist-thumb {
+      width: 80px; /* Larger thumbnail */
+      height: 60px;
+    }
+    
+    .playlist-title {
+      font-size: 0.9rem;
+    }
+  
+    /* 7. Sticky Player: Simplify for Mobile */
+    .sticky-player {
+      width: 100%; /* Full width */
+      bottom: 0; /* Stick to very bottom */
+      border-radius: 0; /* Remove rounded corners */
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+      padding: 15px 20px;
+      /* Account for iPhone Home Bar */
+      padding-bottom: max(15px, env(safe-area-inset-bottom)); 
+      background: rgba(10, 10, 10, 0.95); /* Less transparent for readability */
+    }
+  
+    .player-track-info {
+      max-width: 50%; /* Prevent text from hitting buttons */
+    }
+    
+    .player-title {
+      font-size: 0.8rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  
+    /* Hide the "Skip" buttons on mobile to save space? 
+       Optional: Remove this if you want them. */
+    .control-btn.secondary {
+      display: none; 
+    }
+  
+    .control-btn.primary {
+      width: 40px;
+      height: 40px;
+    }
+  }

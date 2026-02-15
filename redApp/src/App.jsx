@@ -81,6 +81,7 @@ const [currentVideo, setCurrentVideo] = useState(videoList[0]);
         transition: 'background-image 0.5s ease-in-out',
         minHeight: '100vh',
         width: '100%',
+        overflowX: 'hidden',
         paddingBottom: '120px' 
       }}
     >
